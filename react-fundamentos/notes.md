@@ -29,3 +29,8 @@ yarn create react-app <nome do projeto> --template typescript
 - O <App/> será onde será renderizado todos os componentes
 - Sempre terá que importar os componentes com o nome (primeira letra maiúscula) seguido de from e seu caminho relativo.
 - Todos a serem exportados(componentes) vão precisar deum export default nas functions de cada componente.
+
+# Tipando usando interface ao invés de PropTypes
+
+- interface <nomeDaInterface> { object: {types} types: ex: string, number}
+- inserir o nome da intarface no props: <nomeDaInterface> como argumento da função
