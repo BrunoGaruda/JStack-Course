@@ -24,12 +24,13 @@ export function App() {
     // Método push copia o array e o altera. No react é diferente, não vai funcionar. React trabalha com valores imutáveis
     // posts.push()
 
-    setPosts([
-      ...posts,
+    // o prevState serve para intermediar o posts evitando possíveis erros
+    setPosts(prevState => [
+      ...prevState, //...posts
       {
         id: posts.length + 1,
-        title: `Title#0${posts.length + 1}`,
-        subtitle: `Sub#0${posts.length + 1}`,
+        title: `Title#0${prevState.length + 1}`,
+        subtitle: `Sub#0${prevState.length + 1}`,
         likes: Math.random() * 1000
       }
     ])
