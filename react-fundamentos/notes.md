@@ -34,3 +34,18 @@ yarn create react-app <nome do projeto> --template typescript
 
 - interface <nomeDaInterface> { object: {types} types: ex: string, number}
 - inserir o nome da intarface no props: <nomeDaInterface> como argumento da função
+
+# Usando useState
+
+- criando o estado usando useState, com conteito de imutabilidade, e renderizado os posts utilizando um spread com o array.
+- atualizando o ...posts para prevState, servindo para intermediar o posts evitando possíveis erros.
+
+# Criando uma função para remover os posts
+
+- Utilizando a função handleRemovePost como callback ao <App> pois somente o pai que pode modificar o filho(componente), sabendo disso, foi atribuido o onRemove dentro do <Post>. No componente foi passada a função callback com onClick e passando as props.onRemove(props.post.id).
+- Dentro da função handleRemovePost foi posto o filter, que vai retornar o array de post com a condição true. Deixando o === ele vai eliminar os outros e deixar apenas o que foi clicado. Mas com !== ele vai tirar o q foi clicado e manter o resto, que é o nosso propósito.
+
+# Renderização condicinal
+
+- Usa um operador ternário dentro de chaves(javascript), para fazer a condição
+- Usa um Short circuit evaluation para fazer a mesma coisa.
