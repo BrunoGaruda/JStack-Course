@@ -49,3 +49,12 @@ yarn create react-app <nome do projeto> --template typescript
 
 - Usa um operador ternário dentro de chaves(javascript), para fazer a condição
 - Usa um Short circuit evaluation para fazer a mesma coisa.
+
+# Dividindo os componentes em PostHeader e Button
+
+- Foram criados o Button e o PostHeader como componentes para simplificar e não deixar tudo no Header.
+- Button é filho do PostHeader que é filho do Header que é filho do App.
+
+# Criando o Botão para alterar o tema
+
+- criando o botão com o tema dark ou light e tipando "theme", em todos os componentes.

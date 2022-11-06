@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import Post from './Post'
 import Header from './Header'
-import { METHODS } from 'http'
-import { read } from 'fs'
 // const catergory = 'Posts da semana'
 
 // interface postsArray {
@@ -14,6 +12,8 @@ import { read } from 'fs'
 
 // Props, vamos renderizar o conteudo do componente de forma dinâmica
 export function App() {
+  const [theme, setTheme] = useState('dark')
+
   // Foi necessário a desestruturação do array para manter o principio de imutabilidade. O react trabalha com SPA e não é necessário a renderização do array, apenas do que foi alterado, o estado.
   const [posts, setPosts] = useState([
     { id: 1, title: 'Title#01', subtitle: 'Sub#01', likes: 20, read: false },
@@ -21,6 +21,10 @@ export function App() {
     { id: 3, title: 'Title#03', subtitle: 'Sub#03', likes: 50, read: false },
     { id: 4, title: 'Title#04', subtitle: 'Sub#04', likes: 100, read: false }
   ])
+
+  function handleToggleTheme() {
+    setTheme(prevState => (prevState === 'dark' ? 'light' : 'dark'))
+  }
 
   function handleRefresh() {
     // Método push copia o array e o altera. No react é diferente, não vai funcionar. React trabalha com valores imutáveis
@@ -48,7 +52,7 @@ export function App() {
 
   return (
     <>
-      <Header>
+      <Header theme={theme} onToogleTheme={handleToggleTheme}>
         <div>
           {/* tive que colocar uma div ao fragment parar concertar o erro 
           https://github.com/mbrn/material-table/issues/653
@@ -65,6 +69,7 @@ export function App() {
         <Post
           key={posts.id} // Foi necessário atribuir a Key para retirar o erro, sempre que foi atribuir uma lista, tem q colorar a Key.
           onRemove={handleRemovePost} // propriedade da função handleRemovePost
+          theme={theme}
           post={
             // id: posts.id,
             // title: posts.title,
