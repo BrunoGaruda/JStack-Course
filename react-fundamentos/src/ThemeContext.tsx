@@ -2,8 +2,6 @@ import { useState, createContext } from 'react'
 
 interface ThemeInterface {
   children: React.ReactNode
-  // theme: string
-  // onToogleTheme: () => void
 }
 
 interface ThemeContextType {
@@ -27,7 +25,7 @@ export default function ThemeProvider(props: ThemeInterface) {
   return (
     <ThemeContext.Provider
       value={{
-        theme,
+        theme: 'dark',
         onToogleTheme: handleToggleTheme
       }}
     >

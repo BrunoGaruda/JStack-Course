@@ -62,3 +62,10 @@ yarn create react-app <nome do projeto> --template typescript
 # Criando o context
 
 - Foi criado o ThemeContext para envolver todos os compoentes do <App> tornando-o o pai. Com isso iremos controlar todas as props dos componentes filhos através de um valor(alguma propriedade que você vai usar o context)
+
+# Importação CSS
+
+- Para trabalhar com importações CSS tem que instalar 2 pacotes:
+  yarn add css-loader style-loader -D
+- Trabalhando com SASS.
+  yarn add sass sass-loader -D

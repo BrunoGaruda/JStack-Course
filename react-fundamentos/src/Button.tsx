@@ -4,7 +4,7 @@ import { ThemeContext } from './ThemeContext'
 interface postButtonInterface {
   children: React.ReactNode
   onClick: any
-  theme?: string
+  // theme?: string
 }
 
 export default function Button(props: postButtonInterface) {
@@ -16,7 +16,7 @@ export default function Button(props: postButtonInterface) {
       {/* <button onClick={() => props.onRemove(props.post.id)}>Remover</button> */}
 
       <button
-        onClick={props.onClick}
+        onClick={() => props.onClick}
         style={{
           color: theme === 'dark' ? '#fff' : '#000',
           backgroundColor: theme === 'dark' ? '#000' : '#fff'
