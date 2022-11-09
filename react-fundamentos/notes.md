@@ -58,3 +58,7 @@ yarn create react-app <nome do projeto> --template typescript
 # Criando o Botão para alterar o tema
 
 - criando o botão com o tema dark ou light e tipando "theme", em todos os componentes.
+
+# Criando o context
+
+- Foi criado o ThemeContext para envolver todos os compoentes do <App> tornando-o o pai. Com isso iremos controlar todas as props dos componentes filhos através de um valor(alguma propriedade que você vai usar o context)

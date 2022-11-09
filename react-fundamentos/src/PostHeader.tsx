@@ -11,7 +11,7 @@ interface postHeaderInterface {
   // Já que é uma função, void é usado onde não há dados para retornar valores, você poderá especificar void como tipo de retorno.
   // onRemove: () => void
   onRemove: any // tornei o tipo any para evitar o erro do (props.post.id), momentaneamente
-  theme: string
+  // theme: string
 }
 
 export default function PostHeader(props: postHeaderInterface) {
@@ -28,7 +28,7 @@ export default function PostHeader(props: postHeaderInterface) {
       {/* É necessário passar a arrow function para executar o onRemove com a props.post.id  */}
       <Button
         // onClick={props.onRemove}
-        theme={props.theme}
+        // theme={props.theme}
         onClick={() => props.onRemove(props.post.id)}
       >
         Remover
