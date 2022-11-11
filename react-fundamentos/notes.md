@@ -69,3 +69,7 @@ yarn create react-app <nome do projeto> --template typescript
   yarn add css-loader style-loader -D
 - Trabalhando com SASS.
   yarn add sass sass-loader -D
+
+# Styled Components
+
+yarn add styled-components
