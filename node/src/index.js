@@ -6,7 +6,6 @@ const routes = require('./routes')
 // criando servidor
 const server = http.createServer((request, response) => {
   const parsedUrl = url.parse(request.url, true)
-  console.log(parsedUrl)
 
   // Método GET | Endpoint /
   console.log(
@@ -20,6 +19,7 @@ const server = http.createServer((request, response) => {
   )
 
   if (route) {
+    request.query = parsedUrl.query
     route.handler(request, response)
   } else {
     response.writeHead(404, { 'Content-Type': 'text/html' })
