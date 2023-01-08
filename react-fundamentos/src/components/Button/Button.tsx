@@ -9,7 +9,7 @@ interface postButtonInterface {
 
 export default function Button(props: postButtonInterface) {
   // const theme = useContext(ThemeContext)
-  // const theme = useContext('dark')
+  // const theme = useContext('dark') 
   const theme = 'dark'
 
   return (

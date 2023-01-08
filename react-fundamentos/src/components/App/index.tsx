@@ -62,7 +62,7 @@ export function App() {
   }
 
   // O componente pai (App) é quem pode fazer alterações no componente filho Post. Neste caso, a função de remoção está aqui no App e sera atribuida como propriedade no componente <Post> nesse arquivo.
-  // proprierade postID teve q ser usada para ser renderizada no log.
+  // propriedade postID teve q ser usada para ser renderizada no log.
   function handleRemovePost(postId: number) {
     // Filter vai retornar o array de post com a condição true. Deixando o === ele vai eliminar os outros e deixar apenas o que foi clicado. Mas com !== ele vai tirar o q foi clicado e manter o resto, que é o nosso propósito.
     setPosts(prevState =>

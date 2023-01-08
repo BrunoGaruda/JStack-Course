@@ -1,6 +1,6 @@
 # Criando o projeto
 
-yarn create react-app <nome do projeto> --template typescript
+yarn create react-app <nomeDoProjeto> --template typescript
 
 # Criando a estrutura do projeto
 
@@ -73,3 +73,23 @@ yarn create react-app <nome do projeto> --template typescript
 # Styled Components
 
 yarn add styled-components
+
+- Criando componentes de estilos usando diretamente do arquivo, ou criando um style usando uma função que retorna o estilo com ``.
+
+```
+ex: const Title = styled.h1`
+  color: #green
+`
+```
+
+- Reaproveitando o Title e atribuindo novas propriedades em cima dele. Pegando o **import { Title } from '../App/styles'** e dentro do styles **import MainTitle from '../../Title'**.
+
+```
+import styled from 'styled-components'
+
+import MainTitle from '../../Title'
+
+export const Title = styled(MainTitle)`
+  color: orangered;
+`
+```

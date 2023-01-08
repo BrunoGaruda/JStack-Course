@@ -1,7 +1,7 @@
 import PostHeader from '../Post/PostHeader'
 import '../Post'
 
-import { Rate, Subtitle } from './styles'
+import { Container, Rate, Subtitle } from './styles'
 
 interface postInterface {
   // post é um objeto, portanto, é necessario tipar sendo um objeto na interface
@@ -12,6 +12,7 @@ interface postInterface {
     read: boolean
     likes: number
     removed: boolean
+    children?: React.ReactNode
   }
   // Já que é uma função, void é usado onde não há dados para retornar valores, você poderá especificar void como tipo de retorno.
   // onRemove: () => void
@@ -19,20 +20,20 @@ interface postInterface {
   // theme: string
 }
 
-export default function Post(props: postInterface) {
+export default function Post({ post: { id, title, subtitle, read, likes, removed }, onRemove }: postInterface) {
   return (
-    <article className={props.post.removed ? 'postDeleted' : 'post'}>
+    <Container >
       <PostHeader
         // theme={props.theme}
-        onRemove={props.onRemove}
+        onRemove={onRemove}
         post={{
-          id: props.post.id,
-          title: props.post.title,
-          read: props.post.read
+          id: id,
+          title: title,
+          read: read
         }}
       />
-      <Subtitle>{props.post.subtitle}</Subtitle>
-      <Rate>Média de likes: {props.post.likes / 2}</Rate>
-    </article>
+      <Subtitle>{subtitle}</Subtitle>
+      <Rate>Média de likes: {likes / 2}</Rate>
+    </Container>
   )
 }
