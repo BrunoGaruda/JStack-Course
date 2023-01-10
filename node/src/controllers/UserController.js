@@ -21,9 +21,16 @@ module.exports = {
   getUserById(request, response) {
     const { id } = request.params
 
+    // Encontrando o usuário no mock
     const user = users.find(user => user.id === Number(id))
 
-    response.writeHead(200, { 'Content-Type': 'application/json' })
-    response.end(JSON.stringify(user))
+    // Validação de usuário
+    if (!user) {
+      response.writeHead(400, { 'Content-Type': 'application/json' })
+      response.end(JSON.stringify({ error: 'User not found' }))
+    } else {
+      response.writeHead(200, { 'Content-Type': 'application/json' })
+      response.end(JSON.stringify(user))
+    }
   }
 }
