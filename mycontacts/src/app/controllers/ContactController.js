@@ -29,8 +29,19 @@ class ContactController {
     // Editar um registro
   }
 
-  delete() {
+  async delete(request, response) {
     // Deletar um registro
+    const { id } = request.params;
+    const contact = await ContactsRepository.findById(id);
+
+    if (!contact) {
+      // 404: not found
+      return response.status(404).json({ error: 'Not Found' });
+    }
+
+    await ContactsRepository.delete(id);
+    // 204: No Content
+    return response.sendStatus(204);
   }
 }
 // Singleton
