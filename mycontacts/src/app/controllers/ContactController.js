@@ -27,7 +27,7 @@ class ContactController {
       name, email, phone, category_id,
     } = request.body;
 
-    // Nome é requirido para a validação
+    // Nome é requerido para a validação
     if (!name) {
       return response.status(400).json({ error: 'Name is required' });
     }

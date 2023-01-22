@@ -10,9 +10,9 @@ let contacts = [
   },
   {
     id: v4(),
-    name: 'Bruna lima',
-    email: 'brunalima@gmail.com',
-    phone: '84988998899',
+    name: 'Melissa',
+    email: 'cussyane@gmail.com',
+    phone: '84988996969',
     category_id: v4(),
   },
 ];
