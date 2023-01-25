@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS categories (
   name VARCHAR NOT NULL
 );
 -- criando a tabela
-CREATE TABLE IF NOT EXISTS CONTACTS (
+CREATE TABLE IF NOT EXISTS contacts (
   id UUID NOT NULL UNIQUE DEFAULT uuid_generate_v4(),
   name VARCHAR NOT NULL,
   email VARCHAR UNIQUE,
