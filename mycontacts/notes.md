@@ -9,7 +9,11 @@ docker exec -it pg bash
 - acessando o PostgreSQL
 psql -U root
 
--\l pra olhar as tabelas
+- acessando o mycontacts
+\c mycontacts
+
+- pra olhar as tabelas
+\l
 
 - Criando o mycontacts
 CREATE DATABASE mycontacts;
