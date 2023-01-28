@@ -23,9 +23,12 @@ let contacts = [
 // WHERE(onde), quando o valor será igual ao bind ex: id = $1
 
 class ContactsRepository {
-  async findAll(orderBy) {
+  async findAll(orderBy = 'ASC') {
+    // Corrigindo o erro do SQL injection
+    const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+
     // Aplicando ordem crescente ou descrente com /contacts?orderBy=asc | desc
-    const rows = await db.query(`SELECT * FROM contacts ORDER by name ${orderBy}`);
+    const rows = await db.query(`SELECT * FROM contacts ORDER by name ${direction}`);
     return rows;
   }
 
