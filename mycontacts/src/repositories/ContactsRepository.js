@@ -23,8 +23,9 @@ let contacts = [
 // WHERE(onde), quando o valor será igual ao bind ex: id = $1
 
 class ContactsRepository {
-  async findAll() {
-    const rows = await db.query('SELECT * FROM contacts');
+  async findAll(orderBy) {
+    // Aplicando ordem crescente ou descrente com /contacts?orderBy=asc | desc
+    const rows = await db.query(`SELECT * FROM contacts ORDER by name ${orderBy}`);
     return rows;
   }
 
