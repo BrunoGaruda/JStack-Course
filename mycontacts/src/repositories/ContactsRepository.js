@@ -12,12 +12,20 @@ class ContactsRepository {
     const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
 
     // Aplicando ordem crescente ou descrente com /contacts?orderBy=asc | desc
-    const rows = await db.query(`SELECT * FROM contacts ORDER by name ${direction}`);
+    const rows = await db.query(`
+    SELECT contacts.*, categories.name AS category_name
+    FROM contacts
+    LEFT JOIN categories ON categories.id = contacts.category_id
+    ORDER by contacts.name ${direction}`);
     return rows;
   }
 
   async findById(id) {
-    const [row] = await db.query('SELECT * FROM contacts WHERE id = $1', [id]);
+    const [row] = await db.query(`
+    SELECT contacts.*, categories.name AS category_name
+    FROM contacts
+    LEFT JOIN categories ON categories.id = contacts.category_id
+    WHERE contacts.id = $1`, [id]);
     return row;
   }
 
