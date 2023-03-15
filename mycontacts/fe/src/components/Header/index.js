@@ -1,9 +1,15 @@
-import { Container } from './styles';
+import { Container, InputSearchContainer } from './styles';
+
+import logo from '../../assets/images/logo.svg';
 
 export default function Header() {
   return (
     <Container>
-      Header
+      <img src={logo} alt="Logo MyContacts" width="201px" />
+
+      <InputSearchContainer>
+        <input type="text" placeholder="Pesquise pelo nome" />
+      </InputSearchContainer>
     </Container>
   );
 }
