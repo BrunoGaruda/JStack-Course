@@ -3,12 +3,16 @@ import { ThemeProvider } from 'styled-components';
 import React from 'react';
 import GlobalStyles from '../../assets/styles/global';
 import defaultTheme from '../../assets/styles/themes/default';
+import { Container } from './styles';
+import Header from '../Header';
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles />
-      <h1> MyContacts </h1>
+      <Container>
+        <Header />
+      </Container>
     </ThemeProvider>
 
   );
