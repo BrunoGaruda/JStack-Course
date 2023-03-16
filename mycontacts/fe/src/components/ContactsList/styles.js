@@ -26,8 +26,27 @@ export const Header = styled.header`
     transition: all 0.2s ease-in;
 
     &:hover {
-      background: ${({ theme }) => theme.colors.primary.dark};
+      background: ${({ theme }) => theme.colors.primary.main};
       color: #fff;
+    }
+  }
+`;
+
+export const ListContainer = styled.div`
+  margin-top: 24px;
+
+  header {
+      button {
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-right: 8px;
+        font-weight: bold;
+        color: ${({ theme }) => theme.colors.primary.main};
+      }
     }
   }
 `;
