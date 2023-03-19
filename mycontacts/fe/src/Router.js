@@ -1,5 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Route, BrowserRouter as Routes } from 'react-router-dom';
+import React from 'react';
+import {
+  Routes,
+  Route,
+} from 'react-router-dom';
 
 import Home from './pages/Home';
 import NewContact from './pages/NewContact';

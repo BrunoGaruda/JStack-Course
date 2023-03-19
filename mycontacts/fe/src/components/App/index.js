@@ -7,7 +7,7 @@ import defaultTheme from '../../assets/styles/themes/default';
 import { Container } from './styles';
 
 import Header from '../Header';
-// import ContactsList from '../ContactsList';
+
 import Router from '../../Router';
 
 function App() {
