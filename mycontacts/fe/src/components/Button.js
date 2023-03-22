@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export default styled.button`
-  width: 100%;
+  padding: 0 16px;
   background: ${({ theme }) => theme.colors.primary.main};
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
