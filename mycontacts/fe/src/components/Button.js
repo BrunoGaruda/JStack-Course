@@ -28,6 +28,7 @@ export default styled.button`
     cursor: default;
   }
 
+  // Danger colors
   ${({ theme, danger }) => danger && css`
     background: ${theme.colors.danger.main};
 
@@ -37,7 +38,5 @@ export default styled.button`
     &:active {
     background: ${theme.colors.danger.dark};
     }
-
-
   `}
 `;
