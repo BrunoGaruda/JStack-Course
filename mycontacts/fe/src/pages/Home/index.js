@@ -12,7 +12,10 @@ import Modal from '../../components/Modal';
 export default function Home() {
   return (
     <Container>
-      <Modal />
+      <Modal
+        // danger={false}
+        danger
+      />
 
       <InputSearchContainer>
         <input type="text" placeholder="Pesquise pelo nome" />
