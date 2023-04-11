@@ -15,6 +15,8 @@ export default styled.select`
 
   font-size: 16px;
   transition: border-color 0.2s ease-in;
+  //evitando que mobile use estilos padrões
+  appearance: none;
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.primary.main}

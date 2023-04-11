@@ -43,9 +43,9 @@ export default function ContactForm({ buttonLabel }) {
     // evita o redirecionamento da página
     event.preventDefault();
 
-    console.log({
-      name, email, phone, category,
-    });
+    // console.log({
+    //   name, email, phone, category,
+    // });
   }
 
   return (
