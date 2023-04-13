@@ -51,3 +51,17 @@ export default function Home() {
     </Container>
   );
 }
+
+fetch('http://localhost:3000')
+  .then((response) => {
+    console.log('response', response);
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });
+
+// SOP -> Same Origin Policy -> Política de mesma origem
+// Origem: protocolo://domínio:porta
+
+//   Saída: http://localhost:3000
+// Destino: http://localhost:3000
