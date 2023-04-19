@@ -13,6 +13,13 @@ const app = express();
 
 // Middleware para ler requisições com body
 app.use(express.json());
+
+// Midware CORS
+app.use((request, response, next) => {
+  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  next();
+});
+
 // Routes (Middleware)
 app.use(routes);
 
