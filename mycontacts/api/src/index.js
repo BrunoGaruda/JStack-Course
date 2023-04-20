@@ -1,26 +1,18 @@
 const express = require('express');
+require('express-async-errors');
 
+const cors = require('./app/middlewares/cors');
+const errorHandler = require('./app/middlewares/errorHandler');
 const routes = require('./routes');
 
 const app = express();
 
-// // Middlewares
-// app.use((request, response) => {
-// // Middleware 1
-//   request.appId = 'MeuAppID';
-//   response.send('Interceptado pelo Middleware');
-// });
-
 // Middleware para ler requisições com body
 app.use(express.json());
-
-// Midware CORS
-app.use((request, response, next) => {
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  next();
-});
-
+// Midware CORS, com isso irá acessar todas as rotas utilizando a política CORS
+app.use(cors);
 // Routes (Middleware)
 app.use(routes);
+app.use(errorHandler);
 
 app.listen(3001, () => console.log('🔥 Server started at http://localhost:3000'));
