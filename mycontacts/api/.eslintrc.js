@@ -15,5 +15,6 @@ module.exports = {
     'no-promise-executor-return': 'off',
     camelcase: 'off',
     // quotes: 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
   },
 };
