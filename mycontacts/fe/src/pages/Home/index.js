@@ -37,7 +37,10 @@ export default function Home() {
       </InputSearchContainer>
 
       <Header>
-        <strong>3 contatos</strong>
+        <strong>
+          {contacts.length}
+          {contacts.length === 1 ? ' contato' : ' contatos'}
+        </strong>
         <Link to="/new">Novo contato</Link>
       </Header>
 
@@ -50,25 +53,26 @@ export default function Home() {
         </header>
       </ListContainer>
 
-      <Card>
-        <div className="info">
-          <div className="contact-name">
-            <strong>Bruno Almeida</strong>
-            <small>instagram</small>
+      {contacts.map((contact) => (
+        <Card key={contact}>
+          <div className="info">
+            <div className="contact-name">
+              <strong>Bruno Almeida</strong>
+              <small>instagram</small>
+            </div>
+            <span>bruno@gmail.com </span>
+            <span>(84) 99999-9999 </span>
           </div>
-          <span>bruno@gmail.com </span>
-          <span>(84) 99999-9999 </span>
-        </div>
-        <div className="actions">
-          <Link to="/edit/123">
-            <img src={edit} alt="Edit" />
-          </Link>
-          <button type="button">
-            <img src={trash} alt="Delete" />
-          </button>
-        </div>
-      </Card>
-
+          <div className="actions">
+            <Link to="/edit/123">
+              <img src={edit} alt="Edit" />
+            </Link>
+            <button type="button">
+              <img src={trash} alt="Delete" />
+            </button>
+          </div>
+        </Card>
+      ))}
     </Container>
   );
 }
