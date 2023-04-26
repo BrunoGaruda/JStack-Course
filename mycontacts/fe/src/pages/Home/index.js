@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Container,
   InputSearchContainer,
@@ -14,21 +14,21 @@ import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
 export default function Home() {
+  const [contacts, setContacts] = useState([]);
+
   useEffect(() => {
     // Criando o parse das requisições no formato JS
     fetch('http://localhost:3001/contacts')
       .then(async (response) => {
         const json = await response.json();
-        console.log('response', response);
-        // console.log('json', json);
-        json.forEach((contact) => {
-          console.log(contact.name);
-        });
+        setContacts(json);
       })
       .catch((err) => {
         console.log('error', err);
       });
   }, []);
+
+  console.log(contacts);
 
   return (
     <Container>
