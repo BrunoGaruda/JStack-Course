@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 
+import { useEffect } from 'react';
 import {
-  Container, InputSearchContainer, Header, ListContainer, Card,
+  Container,
+  InputSearchContainer,
+  Header,
+  ListContainer,
+  Card,
 } from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
@@ -9,6 +14,22 @@ import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 
 export default function Home() {
+  useEffect(() => {
+    // Criando o parse das requisições no formato JS
+    fetch('http://localhost:3001/contacts')
+      .then(async (response) => {
+        const json = await response.json();
+        console.log('response', response);
+        // console.log('json', json);
+        json.forEach((contact) => {
+          console.log(contact.name);
+        });
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+  }, []);
+
   return (
     <Container>
       <InputSearchContainer>
@@ -51,20 +72,6 @@ export default function Home() {
     </Container>
   );
 }
-
-// Criando o parse das requisições no formato JS
-fetch('http://localhost:3001/contacts')
-  .then(async (response) => {
-    const json = await response.json();
-    console.log('response', response);
-    // console.log('json', json);
-    json.forEach((contact) => {
-      console.log(contact.name);
-    });
-  })
-  .catch((err) => {
-    console.log('error', err);
-  });
 
 // SOP -> Same Origin Policy -> Política de mesma origem
 // CORS -> Cross-Origin Resource Sharing -> Compartilhamento de recursos entre origens diferentes
