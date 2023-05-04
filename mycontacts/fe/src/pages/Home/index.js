@@ -25,25 +25,30 @@ export default function Home() {
         setContacts(json);
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log('erro', error);
       });
   }, []);
 
-  console.log(contacts);
+  // function handleToggleOrderBy() {
+  //   const newOrder = orderBy === 'asc' ? 'desc' : 'asc';
+  //   setOrderBy(newOrder);
+  // }
 
   function handleToggleOrderBy() {
     const newOrder = orderBy === 'asc' ? 'desc' : 'asc';
     setOrderBy(newOrder);
+
+    fetch(`http://localhost:3001/contacts?orderBy=${newOrder}`)
+      .then(async (response) => {
+        const json = await response.json();
+        setContacts(json);
+      })
+      .catch((error) => {
+        console.log('erro', error);
+      });
   }
 
-  // fetch('http://localhost:3001/contacts')
-  //   .then(async (response) => {
-  //     const json = await response.json();
-  //     setContacts(json);
-  //   })
-  //   .catch((error) => {
-  //     console.log('error', error);
-  //   });
+  console.log(orderBy);
 
   return (
     <Container>
@@ -74,7 +79,9 @@ export default function Home() {
 
               {/* retirando a "bolinha" do contato caso n tenha category */}
               {contact.category_name && (
-              <small>{contact.category_name}</small>
+              <small>
+                {contact.category_name}
+              </small>
               )}
             </div>
             <span>
