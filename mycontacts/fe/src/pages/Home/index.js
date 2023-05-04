@@ -19,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     // Criando o parse das requisições no formato JS
-    fetch('http://localhost:3001/contacts')
+    fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
       .then(async (response) => {
         const json = await response.json();
         setContacts(json);
@@ -27,28 +27,11 @@ export default function Home() {
       .catch((error) => {
         console.log('erro', error);
       });
-  }, []);
-
-  // function handleToggleOrderBy() {
-  //   const newOrder = orderBy === 'asc' ? 'desc' : 'asc';
-  //   setOrderBy(newOrder);
-  // }
+  }, [orderBy]);
 
   function handleToggleOrderBy() {
-    const newOrder = orderBy === 'asc' ? 'desc' : 'asc';
-    setOrderBy(newOrder);
-
-    fetch(`http://localhost:3001/contacts?orderBy=${newOrder}`)
-      .then(async (response) => {
-        const json = await response.json();
-        setContacts(json);
-      })
-      .catch((error) => {
-        console.log('erro', error);
-      });
+    setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
   }
-
-  console.log(orderBy);
 
   return (
     <Container>
