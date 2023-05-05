@@ -55,7 +55,6 @@ export const Header = styled.header`
 
 export const ListHeader = styled.header`
   margin-top: 24px;
-
   margin-bottom: 8px;
 
   button {
@@ -68,6 +67,11 @@ export const ListHeader = styled.header`
       margin-right: 8px;
       font-weight: bold;
       color: ${({ theme }) => theme.colors.primary.main};
+  }
+
+  img {
+    transform: ${({ orderBy }) => (orderBy === 'asc' ? 'rotate(180deg)' : 'rotate(0deg)')};
+    transition: transform 0.2s ease-in;
   }
 }
 `;
