@@ -16,6 +16,7 @@ import trash from '../../assets/images/icons/trash.svg';
 export default function Home() {
   const [contacts, setContacts] = useState([]);
   const [orderBy, setOrderBy] = useState('asc');
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     // Criando o parse das requisições no formato JS
@@ -33,10 +34,21 @@ export default function Home() {
     setOrderBy((prevState) => (prevState === 'asc' ? 'desc' : 'asc'));
   }
 
+  function handleChangeSearchTerm(event) {
+    setSearchTerm(event.target.value);
+  }
+
+  console.log({ searchTerm });
+
   return (
     <Container>
       <InputSearchContainer>
-        <input type="text" placeholder="Pesquise pelo nome" />
+        <input
+          value={searchTerm}
+          type="text"
+          placeholder="Pesquise pelo nome"
+          onChange={handleChangeSearchTerm}
+        />
       </InputSearchContainer>
 
       <Header>
