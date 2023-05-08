@@ -19,7 +19,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredContacts = contacts.filter((contact) => (
-    contact.name.includes(searchTerm)
+    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   ));
 
   useEffect(() => {
