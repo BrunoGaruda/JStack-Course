@@ -18,6 +18,10 @@ export default function Home() {
   const [orderBy, setOrderBy] = useState('asc');
   const [searchTerm, setSearchTerm] = useState('');
 
+  const filteredContacts = contacts.filter((contact) => (
+    contact.name.includes(searchTerm)
+  ));
+
   useEffect(() => {
     // Criando o parse das requisições no formato JS
     fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
@@ -53,8 +57,8 @@ export default function Home() {
 
       <Header>
         <strong>
-          {contacts.length}
-          {contacts.length === 1 ? ' contato' : ' contatos'}
+          {filteredContacts.length}
+          {filteredContacts.length === 1 ? ' contato' : ' contatos'}
         </strong>
         <Link to="/new">Novo contato</Link>
       </Header>
@@ -66,7 +70,7 @@ export default function Home() {
         </button>
       </ListHeader>
 
-      {contacts.map((contact) => (
+      {filteredContacts.map((contact) => (
         <Card key={contact.id}>
           <div className="info">
             <div className="contact-name">
