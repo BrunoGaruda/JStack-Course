@@ -63,12 +63,14 @@ export default function Home() {
         <Link to="/new">Novo contato</Link>
       </Header>
 
+      {filteredContacts.length > 0 && (
       <ListHeader orderBy={orderBy}>
         <button type="button" onClick={handleToggleOrderBy}>
           <span>Nome</span>
           <img src={arrow} alt="Arrow" />
         </button>
       </ListHeader>
+      )}
 
       {filteredContacts.map((contact) => (
         <Card key={contact.id}>
