@@ -5,6 +5,7 @@
     },
     "extends": [
         "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
         "airbnb"
     ],
     "overrides": [
@@ -14,14 +15,19 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks"
     ],
     "rules": {
       // "react/jsx/filename-extensions": [1, {"extension": [".jsx", ".js"]}],
       "react/react-in-jsx-scope": "off",
       "react/jsx-filename-extension": "off",
       "import/prefer-default-export": "off",
-      "react/jsx-no-bind": "off"
+      "react/jsx-no-bind": "off",
 
+      // Eslint
+      "react-hooks/exhaustive-deps": ["warn", {
+        "additionalHooks": "(useMyCustomHook|useMyOtherCustomHook)"
+      }]
     }
 }

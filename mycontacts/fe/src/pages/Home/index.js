@@ -27,21 +27,24 @@ export default function Home() {
   )), [contacts, searchTerm]);
 
   useEffect(() => {
-    setIsLoading(true);
-    // Criando o parse das requisições no formato JS
-    fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
-      .then(async (response) => {
+    async function loadContacts() {
+      try {
+        setIsLoading(true);
+
+        // Criando o parse das requisições no formato JS
+        const response = await fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`);
         await delay(500);
 
         const json = await response.json();
         setContacts(json);
-      })
-      .catch((error) => {
-        console.log('erro', error);
-      })
-      .finally(() => {
+      } catch (error) {
+        console.log('error', error);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    }
+
+    loadContacts();
   }, [orderBy]);
 
   function handleToggleOrderBy() {
