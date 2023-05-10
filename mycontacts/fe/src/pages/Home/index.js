@@ -35,10 +35,12 @@ export default function Home() {
 
         const json = await response.json();
         setContacts(json);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.log('erro', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [orderBy]);
 
@@ -54,7 +56,7 @@ export default function Home() {
 
   return (
     <Container>
-      {isLoading && <Loader />}
+      <Loader isLoading={isLoading} />
 
       <InputSearchContainer>
         <input
