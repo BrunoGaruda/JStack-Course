@@ -1,8 +1,12 @@
 import delay from '../../utils/delay';
 
-class HttpClient {
+class httpClient {
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl;
+  }
+
   async get(path) {
-    const response = await fetch(`http://localhost:3001${path}`);
+    const response = await fetch(`${this.baseUrl}${path}`);
 
     await delay(500);
 
@@ -10,4 +14,4 @@ class HttpClient {
   }
 }
 
-export default new HttpClient();
+export default httpClient;
