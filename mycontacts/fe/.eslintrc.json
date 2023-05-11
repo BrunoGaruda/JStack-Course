@@ -24,6 +24,7 @@
       "react/jsx-filename-extension": "off",
       "import/prefer-default-export": "off",
       "react/jsx-no-bind": "off",
+      "class-methods-use-this": "off",
 
       // Eslint
       "react-hooks/exhaustive-deps": ["warn", {
