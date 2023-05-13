@@ -6,11 +6,16 @@ class httpClient {
   }
 
   async get(path) {
-    const response = await fetch(`${this.baseUrl}${path}`);
-
     await delay(500);
 
-    return response.json();
+    const response = await fetch(`${this.baseUrl}${path}`);
+
+    // status 200 a 299
+    if (response.ok) {
+      return response.json();
+    }
+
+    throw new Error('Erro na API!');
   }
 }
 
