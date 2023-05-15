@@ -10,12 +10,18 @@ class httpClient {
 
     const response = await fetch(`${this.baseUrl}${path}`);
 
-    // status 200 a 299
-    if (response.ok) {
-      return response.json();
+    let body = null;
+    const contentType = response.headers.get('content-type');
+    if (contentType.includes('application/json')) {
+      body = await response.json();
     }
 
-    throw new Error(`${response.status} - ${response.statusText}`);
+    // status ok de 200 a 299
+    if (response.ok) {
+      return body;
+    }
+
+    throw new Error(body.error);
   }
 }
 
