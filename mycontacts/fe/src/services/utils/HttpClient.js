@@ -24,6 +24,7 @@ class httpClient {
 
     throw new APIerror(
       body?.error || `${response.status} - ${response.statusText}`,
+      response,
     );
   }
 }
