@@ -35,7 +35,8 @@ export default function Home() {
 
         setContacts(contactsList);
       } catch (error) {
-        console.log('Caiu no catch', error);
+        console.log('Name:', error.name);
+        console.log(error);
       } finally {
         setIsLoading(false);
       }
@@ -52,7 +53,7 @@ export default function Home() {
     setSearchTerm(event.target.value);
   }
 
-  console.log({ searchTerm });
+  // console.log({ searchTerm });
 
   return (
     <Container>
