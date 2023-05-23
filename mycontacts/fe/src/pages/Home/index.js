@@ -68,7 +68,7 @@ export default function Home() {
         />
       </InputSearchContainer>
 
-      <Header>
+      <Header hasError={hasError}>
         {!hasError && (
           <strong>
             {filteredContacts.length}
@@ -80,7 +80,7 @@ export default function Home() {
 
       {hasError && (
         <div>
-          Ocorreu um error!
+          Ocorreu um error!!
         </div>
       )}
 
