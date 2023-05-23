@@ -7,13 +7,17 @@ import {
   Header,
   ListHeader,
   Card,
+  ErrorContainer,
 } from './styles';
 
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
+import sad from '../../assets/images/sad.svg';
 
 import Loader from '../../components/Loader';
+import Button from '../../components/Button';
+
 import ContactsService from '../../services/ContactsService';
 
 export default function Home() {
@@ -79,9 +83,17 @@ export default function Home() {
       </Header>
 
       {hasError && (
-        <div>
-          Ocorreu um error!!
-        </div>
+        <ErrorContainer>
+          <img src={sad} alt="Sad" />
+          <div className="details">
+            <strong>
+              Ocorreu um error ao obter os contatos!
+            </strong>
+            <Button type="button">
+              Tentar novamente
+            </Button>
+          </div>
+        </ErrorContainer>
       )}
 
       {filteredContacts.length > 0 && (
