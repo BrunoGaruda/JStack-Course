@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { Link } from 'react-router-dom';
 
 import {
@@ -81,7 +82,17 @@ export default function Home() {
         </InputSearchContainer>
       )}
 
-      <Header hasError={hasError}>
+      <Header
+        justifyContent={
+          hasError
+            ? 'flex-end'
+            : (
+              contacts.length > 0
+                ? 'space-between'
+                : 'center'
+            )
+          }
+      >
         {(!hasError && contacts.length > 0) && (
           <strong>
             {filteredContacts.length}
