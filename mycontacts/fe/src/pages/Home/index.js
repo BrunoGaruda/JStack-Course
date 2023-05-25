@@ -37,7 +37,8 @@ export default function Home() {
     try {
       setIsLoading(true);
 
-      const contactsList = await ContactsService.listContacts(orderBy);
+      // const contactsList = await ContactsService.listContacts(orderBy);
+      const contactsList = []; await ContactsService.listContacts(orderBy);
 
       setHasError(false);
       setContacts(contactsList);
@@ -69,17 +70,19 @@ export default function Home() {
     <Container>
       <Loader isLoading={isLoading} />
 
-      <InputSearchContainer>
-        <input
-          value={searchTerm}
-          type="text"
-          placeholder="Pesquise pelo nome"
-          onChange={handleChangeSearchTerm}
-        />
-      </InputSearchContainer>
+      {contacts.length > 0 && (
+        <InputSearchContainer>
+          <input
+            value={searchTerm}
+            type="text"
+            placeholder="Pesquise pelo nome"
+            onChange={handleChangeSearchTerm}
+          />
+        </InputSearchContainer>
+      )}
 
       <Header hasError={hasError}>
-        {!hasError && (
+        {(!hasError && contacts.length > 0) && (
           <strong>
             {filteredContacts.length}
             {filteredContacts.length === 1 ? ' contato' : ' contatos'}
