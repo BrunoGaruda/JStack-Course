@@ -32,9 +32,12 @@ export default function ContactForm({ buttonLabel }) {
 
   useEffect(() => {
     async function loadCategories() {
-      const categoriesList = await CategoriesService.listCategories();
+      try {
+        const categoriesList = await CategoriesService.listCategories();
 
-      setCategories(categoriesList);
+        setCategories(categoriesList);
+        // regra desabilitada no eslint
+      } catch {}
     }
 
     loadCategories();
