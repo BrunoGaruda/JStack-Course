@@ -25,23 +25,31 @@ class httpClient {
     throw new APIerror(response, body);
   }
 
-  async post(path) {
+  async post(path, body) {
     await delay(1500);
 
-    const response = await fetch(`${this.baseUrl}${path}`);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+    });
 
-    let body = null;
+    const response = await fetch(`${this.baseUrl}${path}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers,
+    });
+
+    let responseBody = null;
     const contentType = response.headers.get('content-type');
     if (contentType.includes('application/json')) {
-      body = await response.json();
+      responseBody = await response.json();
     }
 
     // status ok de 200 a 299
     if (response.ok) {
-      return body;
+      return responseBody;
     }
 
-    throw new APIerror(response, body);
+    throw new APIerror(response, responseBody);
   }
 }
 
