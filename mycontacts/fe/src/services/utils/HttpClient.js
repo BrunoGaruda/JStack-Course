@@ -6,26 +6,21 @@ class httpClient {
     this.baseUrl = baseUrl;
   }
 
-  async get(path) {
-    await delay(1500);
-
-    const response = await fetch(`${this.baseUrl}${path}`);
-
-    let body = null;
-    const contentType = response.headers.get('content-type');
-    if (contentType.includes('application/json')) {
-      body = await response.json();
-    }
-
-    // status ok de 200 a 299
-    if (response.ok) {
-      return body;
-    }
-
-    throw new APIerror(response, body);
+  get(path) {
+    return this.makeRequest(path, { method: 'GET' });
   }
 
-  async post(path, body) {
+  post(path, body) {
+    return this.makeRequest(
+      path,
+      {
+        method: 'POST',
+        body,
+      },
+    );
+  }
+
+  async makeRequest(path, options) {
     await delay(1500);
 
     const headers = new Headers({
@@ -33,8 +28,8 @@ class httpClient {
     });
 
     const response = await fetch(`${this.baseUrl}${path}`, {
-      method: 'POST',
-      body: JSON.stringify(body),
+      method: options.method,
+      body: JSON.stringify(options.body),
       headers,
     });
 
