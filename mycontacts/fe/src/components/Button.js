@@ -7,6 +7,9 @@ export default styled.button`
   border-radius: 4px;
   border: none;
   height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   font-weight: bold;
   font-size: 16px;
