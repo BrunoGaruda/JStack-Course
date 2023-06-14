@@ -13,6 +13,7 @@ import FormGroup from '../FormGroup';
 import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
+import Spinner from '../Spinner';
 
 export default function ContactForm({ buttonLabel, onSubmit }) {
   const [name, setName] = useState('');
@@ -21,6 +22,7 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
   const [categoryId, setCategoryId] = useState('');
   const [categories, setCategories] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
     errors,
@@ -68,13 +70,24 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
     setPhone(formatPhone(event.target.value));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     // evita o redirecionamento da página
     event.preventDefault();
 
-    onSubmit({
+    setIsSubmitting(true);
+
+    await onSubmit({
       name, email, phone, categoryId,
     });
+
+    // Caso haja outro código que nao depende da promise onSubmit
+    // await onSubmit({
+    //   name, email, phone, categoryId,
+    // }).finally(() => {
+    //   setIsSubmitting(false);
+    // });
+
+    setIsSubmitting(false);
   }
 
   return (
@@ -129,7 +142,8 @@ export default function ContactForm({ buttonLabel, onSubmit }) {
 
       <ButtonContainer>
         <Button type="submit" disabled={!isFormValid}>
-          {buttonLabel}
+          {!isSubmitting && buttonLabel}
+          {isSubmitting && <Spinner />}
         </Button>
       </ButtonContainer>
 
