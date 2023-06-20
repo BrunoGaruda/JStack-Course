@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: fixed;
   z-index: 2;
   bottom: 48px;
-  background: red;
+  /* background: red; */
 
   // centralizando independente do tamanho do Toast
   left: 50%;
