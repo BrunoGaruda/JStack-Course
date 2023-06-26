@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container } from './styles';
 
 import ToastMessage from '../ToastMessage';
 
 export default function ToastContainer() {
-  const [messages] = useState([
-    { id: Math.random(), type: 'default', text: 'Default text' },
-    { id: Math.random(), type: 'danger', text: 'Danger text' },
-    { id: Math.random(), type: 'success', text: 'Success text' },
-  ]);
+  const [messages, setMessages] = useState([]);
 
-  // function toast({type, text}){
-  //   setMessages(prevState => [...prevState, {type, text}])
-  // }
+  useEffect(() => {
+    document.addEventListener('addtoast', (event) => {
+      const { type, text } = event.detail;
+
+      setMessages((prevState) => [
+        ...prevState,
+        { id: Math.random(), type, text },
+      ]);
+    });
+  }, []);
+
   return (
     <Container>
       {messages.map((message) => (
