@@ -7,14 +7,20 @@ export default function ToastContainer() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    document.addEventListener('addtoast', (event) => {
+    function handleAddToast(event) {
       const { type, text } = event.detail;
 
       setMessages((prevState) => [
         ...prevState,
         { id: Math.random(), type, text },
       ]);
-    });
+    }
+
+    document.addEventListener('addtoast', handleAddToast);
+
+    return () => {
+      document.removeEventListener('addtoast', handleAddToast);
+    };
   }, []);
 
   return (
