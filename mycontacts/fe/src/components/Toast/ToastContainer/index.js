@@ -34,9 +34,7 @@ export default function ToastContainer() {
       {messages.map((message) => (
         <ToastMessage
           key={message}
-          id={message.id}
-          type={message.type}
-          text={message.text}
+          message={message}
           onRemoveMessage={handleRemoveMessage}
         />
       ))}
