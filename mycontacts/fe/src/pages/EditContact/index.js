@@ -8,6 +8,7 @@ import Loader from '../../components/Loader';
 import toast from '../../utils/toast';
 
 export default function EditContact() {
+  const [contact, setContact] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
@@ -19,7 +20,7 @@ export default function EditContact() {
         const contactData = await ContactsService.getContactById(
           id,
         );
-        console.log({ contactData });
+        setContact(contactData);
         setIsLoading(false);
       } catch {
         // history.push() to navigate
@@ -47,8 +48,10 @@ export default function EditContact() {
       />
 
       <ContactForm
+        key={contact.id}
         buttonLabel="Salvar alterações"
         onSubmit={handleSubmit}
+        contact={contact}
       />
     </>
   );
