@@ -1,11 +1,17 @@
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import PageHeader from '../../components/PageHeader';
 import ContactForm from '../../components/ContactForm';
 import ContactsService from '../../services/ContactsService';
 
+import Loader from '../../components/Loader';
+import toast from '../../utils/toast';
+
 export default function EditContact() {
+  const [isLoading, setIsLoading] = useState(true);
+
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadContact() {
@@ -14,11 +20,19 @@ export default function EditContact() {
           id,
         );
         console.log({ contactData });
-      } catch {}
+        setIsLoading(false);
+      } catch {
+        // history.push() to navigate
+        navigate('/');
+        toast({
+          type: 'danger',
+          text: 'Contato não encontrado!',
+        });
+      }
     }
 
     loadContact();
-  }, [id]);
+  }, [id, navigate]);
 
   function handleSubmit() {
     //
@@ -26,6 +40,8 @@ export default function EditContact() {
 
   return (
     <>
+      <Loader isLoading={isLoading} />
+
       <PageHeader
         title="Bruno Almeida"
       />
