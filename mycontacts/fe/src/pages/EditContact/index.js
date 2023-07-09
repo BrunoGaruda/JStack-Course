@@ -9,7 +9,7 @@ import toast from '../../utils/toast';
 
 export default function EditContact() {
   const [isLoading, setIsLoading] = useState(true);
-  const contactFormRef = useRef('valor inicial');
+  const contactFormRef = useRef(null);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,10 +20,8 @@ export default function EditContact() {
         const contact = await ContactsService.getContactById(
           id,
         );
-        console.log('EditContact.contactFormRef', contactFormRef);
-        // ContactForm.setFieldsValues(contact);
 
-        console.log({ contact });
+        contactFormRef.current.setFieldsValues(contact);
         setIsLoading(false);
       } catch {
         // history.push() to navigate
