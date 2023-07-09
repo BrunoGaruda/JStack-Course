@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 
 import isEmailValid from '../../utils/isEmailValid';
 import formatPhone from '../../utils/formatPhone';
@@ -14,11 +14,12 @@ import Input from '../Input';
 import Select from '../Select';
 import Button from '../Button';
 
-export default function ContactForm({ buttonLabel, onSubmit, contact }) {
-  const [name, setName] = useState(contact.name);
-  const [email, setEmail] = useState(contact.email);
-  const [phone, setPhone] = useState(contact.phone);
-  const [categoryId, setCategoryId] = useState(contact.category_id);
+const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
+  console.log('ContactForm.ref', ref);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [categories, setCategories] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -159,10 +160,11 @@ export default function ContactForm({ buttonLabel, onSubmit, contact }) {
     </Form>
 
   );
-}
+});
 
 ContactForm.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  contact: PropTypes.shape().isRequired,
 };
+
+export default ContactForm;
