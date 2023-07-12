@@ -17,7 +17,6 @@ import Select from '../Select';
 import Button from '../Button';
 
 const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
-  // console.log('ContactForm.ref', ref);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -25,9 +24,6 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
   const [categories, setCategories] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const refOobject = ref;
-  refOobject.current = 'valor setado dentro do contactform';
 
   const {
     errors,
@@ -45,7 +41,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
       setPhone(formatPhone(contact.phone ?? ''));
       setCategoryId(contact.category_id ?? '');
     },
-  }));
+  }), []);
 
   useEffect(() => {
     async function loadCategories() {
