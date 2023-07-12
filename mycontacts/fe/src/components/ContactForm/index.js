@@ -94,18 +94,7 @@ const ContactForm = forwardRef(({ buttonLabel, onSubmit }, ref) => {
       name, email, phone, categoryId,
     });
 
-    // Caso haja outro código que nao depende da promise onSubmit
-    // await onSubmit({
-    //   name, email, phone, categoryId,
-    // }).finally(() => {
-    //   setIsSubmitting(false);
-    // });
-
     setIsSubmitting(false);
-    setName('');
-    setEmail('');
-    setPhone('');
-    setCategoryId('');
   }
 
   return (
