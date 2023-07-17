@@ -26,6 +26,7 @@ import magnifierQuestion from '../../assets/images/magnifierQuestion.svg';
 
 import Loader from '../../components/Loader';
 import Button from '../../components/Button';
+import Modal from '../../components/Modal';
 
 import ContactsService from '../../services/ContactsService';
 
@@ -75,6 +76,16 @@ export default function Home() {
   return (
     <Container>
       <Loader isLoading={isLoading} />
+
+      <Modal
+        danger
+        title="Tem certeza que deseja remover o contato ''Bruno Garuda''? "
+        confirmLabel="Deletar"
+        onCancel={() => alert('Cancelou')}
+        onConfirm={() => alert('Confirmou')}
+      >
+        <h2>test</h2>
+      </Modal>
 
       {contacts.length > 0 && (
         <InputSearchContainer>
