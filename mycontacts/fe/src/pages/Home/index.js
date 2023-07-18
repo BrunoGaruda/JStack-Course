@@ -29,6 +29,7 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 
 import ContactsService from '../../services/ContactsService';
+import toast from '../../utils/toast';
 
 export default function Home() {
   const [contacts, setContacts] = useState([]);
@@ -81,8 +82,21 @@ export default function Home() {
     setIsDeleteModalVisible(false);
   }
 
-  function handleConfirmDeleteContact() {
-    console.log(contactBeingDeleted.id);
+  async function handleConfirmDeleteContact() {
+    try {
+      await ContactsService.deleteContact(contactBeingDeleted.id);
+
+      toast({
+        type: 'success',
+        text: 'Contato deletado com sucesso!',
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        type: 'danger',
+        text: 'Ocorreu um erro ao deletar o contato!',
+      });
+    }
   }
 
   return (
