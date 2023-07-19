@@ -39,6 +39,7 @@ export default function Home() {
   const [hasError, setHasError] = useState(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const [contactBeingDeleted, setContactBeingDeleted] = useState(null);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -80,22 +81,32 @@ export default function Home() {
   }
   function handleCloseDeleteModal() {
     setIsDeleteModalVisible(false);
+    setContactBeingDeleted(null);
   }
 
   async function handleConfirmDeleteContact() {
     try {
+      setIsLoadingDelete(true);
+
       await ContactsService.deleteContact(contactBeingDeleted.id);
+
+      setContacts((prevState) => prevState.filter(
+        (contact) => contact.id !== contactBeingDeleted.id,
+      )); // limpando o contato deletado da lista
+
+      handleCloseDeleteModal(); // fechando a modal ao deletar o contato
 
       toast({
         type: 'success',
         text: 'Contato deletado com sucesso!',
       });
-    } catch (error) {
-      console.log(error);
+    } catch {
       toast({
         type: 'danger',
         text: 'Ocorreu um erro ao deletar o contato!',
       });
+    } finally {
+      setIsLoadingDelete(false);
     }
   }
 
@@ -105,6 +116,7 @@ export default function Home() {
 
       <Modal
         danger
+        isLoading={isLoadingDelete}
         visible={isDeleteModalVisible}
         title={`Tem certeza que deseja remover o contato "${contactBeingDeleted?.name}"?`}
         confirmLabel="Deletar"
